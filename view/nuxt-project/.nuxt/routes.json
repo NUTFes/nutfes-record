@@ -1,0 +1,16 @@
+[
+  {
+    "name": "members",
+    "path": "/members",
+    "component": "/app/nuxt-project/pages/members.vue",
+    "chunkName": "pages/members",
+    "_name": "_fad48fe6"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/app/nuxt-project/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_dc6fcb74"
+  }
+]
