@@ -2,9 +2,16 @@
   {
     "name": "members",
     "path": "/members",
-    "component": "/app/nuxt-project/pages/members.vue",
-    "chunkName": "pages/members",
-    "_name": "_fad48fe6"
+    "component": "/app/nuxt-project/pages/members/index.vue",
+    "chunkName": "pages/members/index",
+    "_name": "_862d7e60"
+  },
+  {
+    "name": "members-id",
+    "path": "/members/:id",
+    "component": "/app/nuxt-project/pages/members/_id/index.vue",
+    "chunkName": "pages/members/_id/index",
+    "_name": "_289573bb"
   },
   {
     "name": "index",

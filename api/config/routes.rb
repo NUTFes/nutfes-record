@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace 'api' do
       namespace 'v1' do
         get "users" => "users#index"
+        get "user/:id" => "users#show"
       end
     end
     namespace :api do

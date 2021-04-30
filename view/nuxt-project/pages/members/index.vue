@@ -8,7 +8,7 @@
         <li style="font-size:22px">
           <b-badge variant="primary" v-if="user.role_id == 1">講師</b-badge>
           <b-badge variant="primary" v-if="user.role_id == 2">生徒</b-badge>
-          <b-link>{{ user.name }}</b-link>
+          <nuxt-link :to="`/members/${user.id}`">{{ user.name }}</nuxt-link>
         </li>
       </div>
     </b-col>
