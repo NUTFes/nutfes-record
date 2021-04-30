@@ -26,18 +26,15 @@ services:
   view:
     build: ./view
     container_name: 'nutfes-record-view'
-    command: npm run serve
+    command: npm run dev
     ports:
-      - "8080:8080"
+      - "8000:8000"
     volumes:
       - ./view:/app
-      # - code_share:/app/vue-project/dist
     stdin_open: true
     tty: true
     environment:
       - VUE_APP_URL=http://localhost:3000
-    depends_on:
-      - api
 volumes:
   mysql-data:
     driver: local
