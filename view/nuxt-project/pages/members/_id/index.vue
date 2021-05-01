@@ -8,7 +8,15 @@
       <b-card no-body>
         <b-tabs card>
           <b-tab title="Record" active>
-            <b-card-text>
+            <b-card-text v-if="user.role_id==1">
+              <div v-for="t_record in teacher_records">
+                <nuxt-link :to="`/members/${t_record.user_id}/${t_record.id}`">{{ t_record.title }}</nuxt-link>
+                <br>
+                <p style="text-align:right">{{ t_record.updated_at }}</p>
+                <hr>
+              </div>
+            </b-card-text>
+            <b-card-text v-if="user.role_id==2">
               <div v-for="record in records" :key="record.id">
                 <nuxt-link :to="`/members/${user.id}/${record.id}`">{{ record.title }}</nuxt-link>
                 <br>
@@ -102,7 +110,7 @@
       <b-col cols=3></b-col>
       <b-col>
         <b-button to="/members">Back</b-button>
-        <b-button :to="`/members/${this.$route.params.id}/new`" variant="danger">New</b-button>
+        <b-button v-if="user.role_id==2" :to="`/members/${this.$route.params.id}/new`" variant="danger">New</b-button>
       </b-col>
       <b-col cols=3></b-col>
     </b-row>
@@ -117,6 +125,7 @@ export default {
       department: [],
       grade: [],
       records: [],
+      teacher_records: [],
       edit_mode: false,
       department_id: null,
       grade_id: null,
@@ -168,7 +177,14 @@ export default {
     }
   },
   mounted() {
-    this.get()
+    this.get();
+    this.$axios.get('/api/v1/get_records_from_user/' + this.$route.params.id, {
+      headers: { 
+        "Content-Type": "application/json", 
+      },
+    }).then(response => {
+      this.teacher_records = response.data
+    })
   },
   methods: {
     get: function(){
