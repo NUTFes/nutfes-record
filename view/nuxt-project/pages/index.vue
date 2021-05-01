@@ -39,6 +39,15 @@
       </b-col>
       <b-col cols=3></b-col>
     </b-row>
+    <br>
+    <b-row>
+      <b-col cols=3></b-col>
+      <b-col>
+        <hr>
+        <b-link to="/signup">sign up</b-link>
+      </b-col>
+      <b-col cols=3></b-col>
+    </b-row>
   </div>
 </template>
 
@@ -61,9 +70,8 @@ export default {
         .then(
           response => {
             localStorage.setItem("access-token", response.headers["access-token"]);
-            localStorage.setItem("client", response.headers.client);
-            localStorage.setItem("uid", response.headers.uid);
-            localStorage.setItem("token-type", response.headers["token-type"]);
+            localStorage.setItem("client", response.headers.["client"]);
+            localStorage.setItem("uid", response.headers.["uid"]);
             return response;
           },
           error => {

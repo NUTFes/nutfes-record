@@ -9,4 +9,6 @@ class User < ActiveRecord::Base
   belongs_to :role 
   belongs_to :grade
   belongs_to :department
+  has_many :records
+  has_many :teachers
 end

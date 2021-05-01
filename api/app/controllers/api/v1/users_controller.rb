@@ -1,7 +1,12 @@
 class Api::V1::UsersController < ApplicationController
-  def index
-    @users = User.all
-    render json: @users
+  def get_role_1
+    users = User.where(role_id: 1)
+    render json: users
+  end
+
+  def get_role_2
+    users = User.where(role_id: 2)
+    render json: users
   end
 
   def show
