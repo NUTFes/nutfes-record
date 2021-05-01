@@ -3,7 +3,7 @@
     <b-row>
       <b-col cols=3></b-col>
       <b-col>
-        <h1>new</h1>
+        <h1>Let's Studying</h1>
       </b-col>
       <b-col cols=3></b-col>
     </b-row>

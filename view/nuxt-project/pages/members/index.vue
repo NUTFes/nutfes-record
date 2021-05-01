@@ -3,12 +3,12 @@
   <b-row>
     <b-col cols=3></b-col>
     <b-col>
-      <h1>members</h1>
+      <h1>Members</h1>
       <hr>
       <div>
         <b-card no-body>
           <b-tabs card>
-            <b-tab title="Student" active>
+            <b-tab title="Students" active>
               <b-card-text>
                 <b-table striped hover :items="users_2" :fields="fields">
                   <template #cell(role_id)="data">
@@ -21,7 +21,7 @@
                 </b-table>
               </b-card-text>
             </b-tab>
-            <b-tab title="Teacher">
+            <b-tab title="Teachers">
               <b-card-text>
                 <b-table striped hover :items="users_1" :fields="fields">
                   <template #cell(role_id)="data">
@@ -51,7 +51,7 @@ export default {
       users_2: [],
       user: [],
       fields: [
-        { key: 'role_id', label: 'role'  },
+        { key: 'role_id', label: 'Role'  },
         'name'
       ],
     }
