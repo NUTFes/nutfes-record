@@ -7,7 +7,7 @@ export default {
   head: {
     title: 'nuxt-project',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'ja'
     },
     meta: [
       { charset: 'utf-8' },
@@ -30,7 +30,6 @@ export default {
   plugins: [
     { src: '~/plugins/axios.js', ssr: false  }
   ],
-
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
