@@ -90,7 +90,7 @@ export default {
           console.log(response.data.id)
           const teacher_url = '/teachers?user_id=' + this.user.id + '&record_id=' + response.data.id
           this.$axios.post(teacher_url)
-          this.$router.push("/members/" + this.$route.params.id)
+          this.$router.push("/members/" + this.$route.params.id + '/' + response.data.id)
           
         }
       )

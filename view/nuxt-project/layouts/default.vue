@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-navbar type="dark" variant="dark">
-      <b-navbar-brand href="/members">NUTFES RECORD</b-navbar-brand>
+      <b-navbar-brand to="/">NUTFES RECORD</b-navbar-brand>
       <b-button v-if="this.$route.path!='/'" @click="logout" variant="dark" class="ml-auto">Log out</b-button>
     </b-navbar> 
     <br>
