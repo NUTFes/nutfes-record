@@ -1,7 +1,5 @@
 <template>
   <div>
-    {{ user.name }}
-    {{ user.id }}
   <b-row>
     <b-col cols=3></b-col>
     <b-col>
