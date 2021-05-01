@@ -53,9 +53,18 @@
       <b-col cols=3></b-col>
       <b-col>
         <b-button v-if="edit_mode==false" :to="`/members/${record.user_id}`">Back</b-button>
-        <b-button v-if="edit_mode==false"" @click="edit_mode=true" variant="success">Edit</b-button>
+        <b-button v-if="edit_mode==false" @click="edit_mode=true" variant="success">Edit</b-button>
+        <b-button v-b-modal.modal-center variant="danger">Delete</b-button>
         <b-button v-if="edit_mode==true" @click="edit_mode=false" variant="primary">Cancel</b-button>
         <b-button v-if="edit_mode==true" @click="edit" variant="danger">Done</b-button>
+
+        <b-modal id="modal-center" centered  title="Are you sure?">
+          <p class="my-4">本当に削除してよろしいですか？</p>
+          <template #modal-footer="{ ok, cancel }">
+            <b-button variant="primary" @click="cancel()">NO</b-button>
+            <b-button variant="danger" @click="destroy_yes">YES</b-button>
+          </template>
+        </b-modal>
       </b-col>
       <b-col cols=3></b-col>
     </b-row>
@@ -78,6 +87,10 @@ export default {
     this.get()
   },
   methods: {
+    destroy_yes: function(){
+      this.$axios.delete('/records/' + this.$route.params.id)
+      this.$router.push('/members/' + this.record.user_id)
+    },
     get: function(){
       this.$axios.get('/api/v1/record/' + this.$route.params.id, {
         headers: { 
@@ -101,7 +114,7 @@ export default {
         this.get();
         this.edit_mode = false
       })
-    }
+    },
   }
 }
 </script>
