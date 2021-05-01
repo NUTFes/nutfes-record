@@ -1,7 +1,7 @@
 class Api::V1::RecordsController < ApplicationController
   def get_records
     user = User.find(params[:id])
-    records = user.records
+    records = user.records.order(updated_at: "DESC")
     render json: records
   end
 
@@ -10,9 +10,19 @@ class Api::V1::RecordsController < ApplicationController
     teacher = record.teacher.user.name
     render json: 
       { 
-      record: record, 
-      teacher: teacher
+        record: record, 
+        teacher: teacher
       }
+  end
+
+  def get_record_from_user
+    user = User.find(params[:id])
+    teachers = user.teachers.order(updated_at: "DESC")
+    records = []
+    for teacher in teachers
+      records << teacher.record
+    end
+    render json: records
   end
 
 end
