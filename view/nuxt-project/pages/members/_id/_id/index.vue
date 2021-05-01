@@ -53,8 +53,8 @@
       <b-col cols=3></b-col>
       <b-col>
         <b-button v-if="edit_mode==false" :to="`/members/${record.user_id}`">Back</b-button>
-        <b-button v-if="edit_mode==false && current_role==1" @click="edit_mode=true" variant="success">Edit</b-button>
-        <b-button v-b-modal.modal-center variant="danger" v-if="edit_mode==false && current_role==1">Delete</b-button>
+        <b-button v-if="edit_mode==false && current_role==1 && teacher_id==current_user_id" @click="edit_mode=true" variant="success">Edit</b-button>
+        <b-button v-b-modal.modal-center variant="danger" v-if="edit_mode==false && current_role==1 && teacher_id==current_user_id">Delete</b-button>
         <b-button v-if="edit_mode==true" @click="edit_mode=false" variant="primary">Cancel</b-button>
         <b-button v-if="edit_mode==true" @click="edit" variant="danger">Done</b-button>
 
@@ -82,7 +82,9 @@ export default {
       teacher: [],
       user: [],
       edit_mode: false,
-      current_role: []
+      current_role: [],
+      current_user_id: [],
+      teacher_id: []
     }
   },
   mounted() {
@@ -95,6 +97,7 @@ export default {
         "uid": localStorage.getItem('uid')
       },
     }).then(response => {
+        this.current_user_id = response.data.id
         this.current_role = response.data.role_id
       })
   },
@@ -113,8 +116,9 @@ export default {
         this.title = this.record.title
         this.content = this.record.content
         this.homework = this.record.homework
-        this.teacher = response.data.teacher
         this.user = response.data.user
+        this.teacher = response.data.teacher
+        this.teacher_id = response.data.teacher_id
       })
     },
     edit: function(){

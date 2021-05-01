@@ -52,7 +52,7 @@
       <b-col cols=3></b-col>
       <b-col>
         <b-button :to="`/members/${$route.params.id}`">Back</b-button>
-        <b-button @click="post">post</b-button>
+        <b-button @click="post" variant="danger">Post</b-button>
       </b-col>
       <b-col cols=3></b-col>
     </b-row>
