@@ -5,7 +5,8 @@ export default {
         port: 9000
   },
   head: {
-    title: 'nuxt-project',
+    titleTemplate: 'nutfes-record',
+    title: 'nutfes-record',
     htmlAttrs: {
       lang: 'ja'
     },
