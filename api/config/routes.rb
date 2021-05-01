@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         get "get_role_1" => "users#get_role_1"
         get "get_role_2" => "users#get_role_2"
         get "user/:id" => "users#show"
+        put "user/update/:id" => "users#update"
         get "records/:id" => "records#get_records"
         get "record/:id" => "records#get_record"
         get "get_current_user" => "current_user#get_current_user"

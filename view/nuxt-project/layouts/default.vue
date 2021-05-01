@@ -3,34 +3,11 @@
     <b-navbar type="dark" variant="dark">
       <b-navbar-brand href="/members">NUTFES RECORD</b-navbar-brand>
       <b-button @click="logout">Log out</b-button>
-      <b-navbar-brand href="/">{{ user }}</b-navbar-brand>
     </b-navbar> 
     <br>
     <Nuxt />
   </div>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      user: [],
-    }
-  },
-  mounted() {
-    this.$axios.get('/api/v1/get_current_user{
-      headers: { 
-        "Content-Type": "application/json", 
-        "access-token": localStorage.getItem('access-token'),
-        "client": localStorage.getItem('client'),
-        "uid": localStorage.getItem('uid')
-      },
-    }).then(response => {
-        this.user = response.data
-      })
-  },
-}
-</script>
 
 <style>
 html {
