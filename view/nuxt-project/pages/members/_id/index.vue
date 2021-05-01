@@ -39,11 +39,19 @@
             <b-card-text>
               <b-jumbotron>
                 <div v-if="edit_mode==false">
+                  <b-badge variant="success">メールアドレス</b-badge>
                   <p>{{ user.email }}</p>
+                  <b-badge variant="success">課程/専攻</b-badge>
                   <p>{{ department }}</p>
+                  <b-badge variant="success">学年</b-badge>
                   <p>{{ grade }}</p>
+                  <b-badge variant="success">PC</b-badge>
                   <p>{{ user.pc_name }}</p>
+                  <b-badge variant="success">PCのCPU</b-badge>
                   <p>{{ user.pc_cpu }}</p>
+                  <b-badge variant="success">PCのメモリ</b-badge>
+                  <p>{{ user.pc_memory }}</p>
+                  <p><b-badge variant="success">PCのSSD</b-badge>
                   <p>{{ user.pc_ssd }}</p>
                 </div>
                 <div v-if="edit_mode==true">

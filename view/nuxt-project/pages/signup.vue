@@ -5,108 +5,154 @@
       <b-col>
         <b-row>
           <b-col>
-            <h1>Sign in</h1>
+            <h1>Sign Up</h1>
           </b-col>
         </b-row>
         <br>
         <b-row>
           <b-col>
-            <b-form-input
+            <b-form-group
+              label="メールアドレス:"
+              >
+              <b-form-input
               v-model="email"
               type="email"
               placeholder="Enter Email"
               required
               ></b-form-input>
+            </b-form-group>
           </b-col>
         </b-row>
         <br>
         <b-row>
           <b-col>
+            <b-form-group
+              label="名前:"
+              description="本名フルネームで"
+              >
             <b-form-input
               v-model="name"
               placeholder="Enter Name"
               required
               ></b-form-input>
+            </b-form-group>
           </b-col>
         </b-row>
         <br>
         <b-row>
           <b-col>
+            <b-form-group
+              label="課程/専攻:"
+              >
             <b-form-select 
               v-model="department_id" 
               :options="departments">
             </b-form-select>
+            </b-form-group>
           </b-col>
         </b-row>
         <br>
         <b-row>
           <b-col>
+            <b-form-group
+              id="input-department"
+              label="学年:"
+              >
             <b-form-select 
               v-model="grade_id" 
               :options="grades">
             </b-form-select>
+            </b-form-group>
           </b-col>
         </b-row>
         <br>
         <b-row>
           <b-col>
+            <b-form-group
+              label="PCの名前:"
+              description="例）Macbook pro"
+              >
             <b-form-input
               v-model="pc_name"
               placeholder="Enter PC Name"
               required
               ></b-form-input>
+            </b-form-group>
           </b-col>
         </b-row>
         <br>
         <b-row>
           <b-col>
+            <b-form-group
+              label="PCのCPU:"
+              description="例）Intel Core i5"
+              >
             <b-form-input
               v-model="pc_cpu"
               placeholder="Enter PC CPU"
               required
               ></b-form-input>
+            </b-form-group>
           </b-col>
         </b-row>
         <br>
         <b-row>
           <b-col>
+            <b-form-group
+              label="PCのメモリ:"
+              description="例）16GB"
+              >
             <b-form-input
               v-model="pc_memory"
               placeholder="Enter PC Memory"
               required
               ></b-form-input>
+            </b-form-group>
           </b-col>
         </b-row>
         <br>
         <b-row>
           <b-col>
+            <b-form-group
+              label="PCのSSD:"
+              description="例）256GB, HDDの場合は256GB(HDD)と記入"
+              >
             <b-form-input
               v-model="pc_ssd"
               placeholder="Enter PC SSD"
               required
               ></b-form-input>
+            </b-form-group>
           </b-col>
         </b-row>
         <br>
         <b-row>
           <b-col>
+            <b-form-group
+              label="パスワード:"
+              >
             <b-form-input
               v-model="password"
               type="password"
               placeholder="Enter Password"
               required
               ></b-form-input>
+            </b-form-group>
           </b-col>
         </b-row>
         <br>
         <b-row>
           <b-col>
+            <b-form-group
+              label="パスワード確認:"
+              >
             <b-form-input
               v-model="password_confirmation"
               type="password"
               placeholder="Enter Password Confirmation"
               required
               ></b-form-input>
+            </b-form-group>
           </b-col>
         </b-row>
         <br>
@@ -147,7 +193,7 @@ export default {
       password: '',
       password_confirmation: '',
       departments: [
-        { value: null, text: '課程/専攻' },
+        { value: null, text: '選択してください' },
         { value: 1, text: '機械創造工学課程' },
         { value: 2, text: '電気電子情報工学課程' },
         { value: 3, text: '物質材料工学課程' },
@@ -170,7 +216,7 @@ export default {
         { value: 20, text: 'その他' },
       ],
       grades: [
-        { value: null, text: '学年' },
+        { value: null, text: '選択してください' },
         { value: 1, text: 'B1[学部1年]' },
         { value: 2, text: 'B2[学部2年]' },
         { value: 3, text: 'B3[学部3年]' },
