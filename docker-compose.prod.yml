@@ -34,16 +34,7 @@ services:
     stdin_open: true
     tty: true
     environment:
-      - VUE_APP_URL=http://localhost:3001
-
-  nginx:
-    container_name: 'nginx'
-    build: ./nginx
-    ports:
-      - 80:80
-    depends_on:
-      - api
-      - view
+      - VUE_APP_URL=http://133.125.44.106:3001
 
 volumes:
   mysql-data:
