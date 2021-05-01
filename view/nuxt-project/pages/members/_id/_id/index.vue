@@ -41,8 +41,8 @@
           <br>
           <b-card-title>日時</b-card-title>
           <b-card-text>
-            作成日時: {{ record.created_at }}<br>
-            編集日時: {{ record.updated_at }}
+            作成日時: {{ record.created_at | format-date }}<br>
+            編集日時: {{ record.updated_at | format-date }}
           </b-card-text>
         </b-card>
       </b-col>

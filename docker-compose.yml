@@ -22,7 +22,6 @@ services:
       - db
     stdin_open: true
     tty: true
-
   view:
     build: ./view
     container_name: 'nutfes-record-view'
