@@ -9,19 +9,29 @@
         <b-tabs card>
           <b-tab title="Record" active>
             <b-card-text v-if="user.role_id==1">
-              <div v-for="t_record in teacher_records">
-                <nuxt-link :to="`/members/${t_record.user_id}/${t_record.id}`">{{ t_record.title }}</nuxt-link>
-                <br>
-                <p style="text-align:right">{{ t_record.updated_at }}</p>
-                <hr>
+              <div v-if="teacher_records.length == 0">
+                No Post
+              </div>
+              <div v-else>
+                <div v-for="t_record in teacher_records">
+                  <nuxt-link :to="`/members/${t_record.user_id}/${t_record.id}`">{{ t_record.title }}</nuxt-link>
+                  <br>
+                  <p style="text-align:right">{{ t_record.updated_at }}</p>
+                  <hr>
+                </div>
               </div>
             </b-card-text>
             <b-card-text v-if="user.role_id==2">
+              <div v-if="teacher_records.length == 0">
+                No Post
+              </div>
+              <div v-else>
               <div v-for="record in records" :key="record.id">
                 <nuxt-link :to="`/members/${user.id}/${record.id}`">{{ record.title }}</nuxt-link>
                 <br>
                 <p style="text-align:right">{{ record.updated_at }}</p>
                 <hr>
+              </div>
               </div>
             </b-card-text>
           </b-tab>
