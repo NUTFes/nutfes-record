@@ -53,16 +53,16 @@
       <b-col cols=3></b-col>
       <b-col>
         <b-button v-if="edit_mode==false" :to="`/members/${record.user_id}`">Back</b-button>
-        <b-button v-if="edit_mode==false" @click="edit_mode=true" variant="success">Edit</b-button>
-        <b-button v-b-modal.modal-center variant="danger">Delete</b-button>
+        <b-button v-if="edit_mode==false && current_role==1" @click="edit_mode=true" variant="success">Edit</b-button>
+        <b-button v-b-modal.modal-center variant="danger" v-if="edit_mode==false && current_role==1">Delete</b-button>
         <b-button v-if="edit_mode==true" @click="edit_mode=false" variant="primary">Cancel</b-button>
         <b-button v-if="edit_mode==true" @click="edit" variant="danger">Done</b-button>
 
         <b-modal id="modal-center" centered  title="Are you sure?">
           <p class="my-4">本当に削除してよろしいですか？</p>
           <template #modal-footer="{ ok, cancel }">
-            <b-button variant="primary" @click="cancel()">NO</b-button>
-            <b-button variant="danger" @click="destroy_yes">YES</b-button>
+            <b-button variant="primary" @click="cancel()">No</b-button>
+            <b-button variant="danger" @click="destroy_yes">Yes</b-button>
           </template>
         </b-modal>
       </b-col>
@@ -81,10 +81,21 @@ export default {
       record: [],
       teacher: [],
       edit_mode: false,
+      current_role: []
     }
   },
   mounted() {
     this.get()
+    this.$axios.get('/api/v1/get_current_user', {
+      headers: { 
+        "Content-Type": "application/json", 
+        "access-token": localStorage.getItem('access-token'),
+        "client": localStorage.getItem('client'),
+        "uid": localStorage.getItem('uid')
+      },
+    }).then(response => {
+        this.current_role = response.data.role_id
+      })
   },
   methods: {
     destroy_yes: function(){
