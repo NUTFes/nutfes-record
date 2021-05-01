@@ -8,10 +8,12 @@ class Api::V1::RecordsController < ApplicationController
   def get_record
     record = Record.find(params[:id])
     teacher = record.teacher.user.name
+    user = record.user.name
     render json: 
       { 
         record: record, 
-        teacher: teacher
+        teacher: teacher,
+        user: user
       }
   end
 

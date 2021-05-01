@@ -4,7 +4,7 @@
       <b-col cols=3></b-col>
       <b-col>
         <b-card
-          header="Record"
+          :header="`${user} の学習記録`"
           header-tag="header"
           >
           <h1 v-if="edit_mode==false">{{ record.title }}</h1>
@@ -80,6 +80,7 @@ export default {
       homework:  '',
       record: [],
       teacher: [],
+      user: [],
       edit_mode: false,
       current_role: []
     }
@@ -113,6 +114,7 @@ export default {
         this.content = this.record.content
         this.homework = this.record.homework
         this.teacher = response.data.teacher
+        this.user = response.data.user
       })
     },
     edit: function(){
