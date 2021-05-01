@@ -29,6 +29,7 @@
             <b-card-text>
               <b-jumbotron>
                 <div v-if="edit_mode==false">
+                  <p>{{ user.email }}</p>
                   <p>{{ department }}</p>
                   <p>{{ grade }}</p>
                   <p>{{ user.pc_name }}</p>
@@ -36,6 +37,7 @@
                   <p>{{ user.pc_ssd }}</p>
                 </div>
                 <div v-if="edit_mode==true">
+                  <p>{{ user.email }}</p>
                   <b-row>
                     <b-col>
                       <b-form-select 
@@ -96,6 +98,14 @@
                 </div>
               </b-jumbotron>
               <b-button v-if="edit_mode==false" @click="edit_mode=true" variant="success">Edit</b-button>
+              <b-button v-b-modal.modal-center variant="info" v-if="edit_mode==false && current_role==1">Change Role</b-button>
+              <b-modal id="modal-center" centered  title="Are you sure?">
+                <p class="my-4">権限を変更しますか？</p>
+                <template #modal-footer="{ ok, cancel }">
+                  <b-button variant="primary" @click="cancel()">No</b-button>
+                  <b-button variant="danger" @click="change">Yes</b-button>
+                </template>
+              </b-modal>
               <b-button v-if="edit_mode==true" @click="edit_mode=false">Cancel</b-button>
               <b-button v-if="edit_mode==true" @click="edit" variant="danger">Done</b-button>
             </b-card-text>
@@ -110,7 +120,7 @@
       <b-col cols=3></b-col>
       <b-col>
         <b-button to="/members">Back</b-button>
-        <b-button v-if="user.role_id==2" :to="`/members/${this.$route.params.id}/new`" variant="danger">New</b-button>
+        <b-button v-if="user.role_id==2 && current_role==1" :to="`/members/${this.$route.params.id}/new`" variant="danger">New</b-button>
       </b-col>
       <b-col cols=3></b-col>
     </b-row>
@@ -173,7 +183,8 @@ export default {
         { value: 13, text: 'GD4[イノベ4年]' },
         { value: 14, text: 'GD4[イノベ5年]' },
         { value: 15, text: 'その他' },
-      ]
+      ],
+      current_role: []
     }
   },
   mounted() {
@@ -185,6 +196,16 @@ export default {
     }).then(response => {
       this.teacher_records = response.data
     })
+    this.$axios.get('/api/v1/get_current_user', {
+      headers: { 
+        "Content-Type": "application/json", 
+        "access-token": localStorage.getItem('access-token'),
+        "client": localStorage.getItem('client'),
+        "uid": localStorage.getItem('uid')
+      },
+    }).then(response => {
+        this.current_role = response.data.role_id
+      })
   },
   methods: {
     get: function(){
@@ -220,6 +241,22 @@ export default {
       }).then(response => {
         this.get();
         this.edit_mode = false
+      })
+    },
+    change: function(){
+      var role_id;
+      if(this.user.role_id==1){
+        role_id = 2
+      }else if(this.user.role_id == 2){
+        role_id = 1
+      }
+      const change_url = '/api/v1/user/update/' + this.$route.params.id + '?role_id=' + role_id
+      this.$axios.put(change_url, {
+        headers: { 
+          "Content-Type": "application/json", 
+        },
+      }).then(response => {
+        this.$router.push('/members')
       })
     }
   }
