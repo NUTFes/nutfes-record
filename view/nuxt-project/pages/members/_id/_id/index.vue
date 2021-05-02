@@ -14,7 +14,7 @@
             placeholder="Title"
             ></b-form-input>
           <hr>
-          <b-card-title>内容</b-card-title>
+          <b-card-title><h3><b-badge>内容</b-badge></h3></b-card-title>
           <b-card-text v-if="edit_mode==false" v-html="record.content"></b-card-text>
           <b-form-textarea
             v-if="edit_mode==true"
@@ -25,7 +25,7 @@
             max-rows="10"
             ></b-form-textarea>
           <br>
-          <b-card-title>宿題</b-card-title>
+          <b-card-title><h3><b-badge>宿題</b-badge></h3></b-card-title>
           <b-card-text v-if="edit_mode==false">{{ record.homework }}</b-card-text>
           <b-form-textarea
             v-if="edit_mode==true"
@@ -36,10 +36,10 @@
             max-rows="10"
             ></b-form-textarea>
           <br>
-          <b-card-title>担当</b-card-title>
+          <b-card-title><h3><b-badge>担当</b-badge></h3></b-card-title>
           <b-card-text>{{ teacher }}</b-card-text>
           <br>
-          <b-card-title>日時</b-card-title>
+          <b-card-title><h3><b-badge>日時</b-badge></h3></b-card-title>
           <b-card-text>
             作成日時: {{ record.created_at | format-date }}<br>
             編集日時: {{ record.updated_at | format-date }}
