@@ -15,7 +15,7 @@
             ></b-form-input>
           <hr>
           <b-card-title>内容</b-card-title>
-          <b-card-text v-if="edit_mode==false">{{ record.content }}</b-card-text>
+          <b-card-text v-if="edit_mode==false" v-html="record.content"></b-card-text>
           <b-form-textarea
             v-if="edit_mode==true"
             id="textarea"
@@ -122,7 +122,9 @@ export default {
       })
     },
     edit: function(){
-      const edit_url = '/records/' + this.$route.params.id + '?title=' + this.title + '&content=' + this.content + '&homework=' + this.homework
+      console.log(this.content)
+      var replacedContent = this.content.replace(/\r?\n/g, '');
+      const edit_url = '/records/' + this.$route.params.id + '?title=' + this.title + '&content=' + replacedContent + '&homework=' + this.homework
       this.$axios.put(edit_url, {
         headers: { 
           "Content-Type": "application/json", 
