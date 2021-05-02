@@ -26,7 +26,7 @@ services:
   view:
     build: ./view
     container_name: 'nutfes-record-view'
-    command: npm run dev
+    command: npm run start
     ports:
       - "9000:9000"
     volumes:
