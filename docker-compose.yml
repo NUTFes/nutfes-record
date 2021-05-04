@@ -34,6 +34,18 @@ services:
     tty: true
     environment:
       - VUE_APP_URL=http://localhost:3000
+  react_view:
+    build: ./react_view
+    container_name: 'nutfes-record-react-view'
+    command: sh -c "cd react-sample && yarn start"
+    ports:
+      - "8000:3000"
+    volumes:
+      - ./react_view:/app
+    depends_on:
+      - api
+    stdin_open: true
+    tty: true
 volumes:
   mysql-data:
     driver: local
