@@ -23,7 +23,7 @@ services:
     stdin_open: true
     tty: true
 
-  view:
+  record_view:
     build: ./view
     container_name: 'nutfes-record-view'
     command: npm run start
