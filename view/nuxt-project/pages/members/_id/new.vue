@@ -83,8 +83,10 @@ export default {
   },
   methods: {
     post: function(){
-      const record_url = '/records?title=' + this.title + '&content=' + this.content + '&homework=' + this.homework + '&user_id=' + this.$route.params.id
       this.$axios.defaults.headers.common['Content-Type'] = 'application/json';
+      var replacedContent = this.content.replace(/\r?\n/g, '');
+      var replacedHomework = this.homework.replace(/\r?\n/g, '');
+      const record_url = '/records?title=' + this.title + '&content=' + replacedContent + '&homework=' + replacedHomework + '&user_id=' + this.$route.params.id
       this.$axios.post(record_url).then(
         (response) => {
           console.log(response.data.id)

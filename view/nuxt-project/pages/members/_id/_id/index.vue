@@ -124,7 +124,8 @@ export default {
     edit: function(){
       console.log(this.content)
       var replacedContent = this.content.replace(/\r?\n/g, '');
-      const edit_url = '/records/' + this.$route.params.id + '?title=' + this.title + '&content=' + replacedContent + '&homework=' + this.homework
+      var replacedHomework = this.homework.replace(/\r?\n/g, '');
+      const edit_url = '/records/' + this.$route.params.id + '?title=' + this.title + '&content=' + replacedContent + '&homework=' + replacedHomework
       this.$axios.put(edit_url, {
         headers: { 
           "Content-Type": "application/json", 
