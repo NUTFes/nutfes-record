@@ -26,7 +26,7 @@
             ></b-form-textarea>
           <br>
           <b-card-title><h3><b-badge>宿題</b-badge></h3></b-card-title>
-          <b-card-text v-if="edit_mode==false">{{ record.homework }}</b-card-text>
+          <b-card-text v-if="edit_mode==false" v-html="record.homework"></b-card-text>
           <b-form-textarea
             v-if="edit_mode==true"
             id="textarea"
