@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import axios from "axios"
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -14,17 +15,20 @@ const useStyles = makeStyles({
   },
 });
 
-function createData(role, name) {
-  return { role, name };
-}
-
-const rows = [
-  createData('student', '藤崎竜成'),
-  createData('student', '小林諒太'),
-  createData('student', '安田巴'),
-];
-
 export default function DenseTable() {
+  const host = "http://localhost:3000/"
+  // useStateでstudentsの変数を定義
+  const [students, setStudents] = useState([]);
+
+  // studentsを取得（非同期処理）
+  useEffect(() => {
+    const getStudents = async () => {
+      const response = await axios.get(host + "/api/v1/get_role_2");
+      setStudents(response.data)
+    }
+    getStudents()
+  }, [])
+
   const classes = useStyles();
 
   return (
@@ -37,12 +41,14 @@ export default function DenseTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.role}>
+          {students.map((student) => (
+            <TableRow key={student.id}>
               <TableCell component="th" scope="row">
-                {row.role}
+                {student.role_id === 2 &&
+                  <p>student</p>
+                }
               </TableCell>
-              <TableCell>{row.name}</TableCell>
+              <TableCell>{student.name}</TableCell>
             </TableRow>
           ))}
         </TableBody>

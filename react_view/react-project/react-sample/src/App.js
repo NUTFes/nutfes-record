@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid } from '@material-ui/core';
+import axios from "axios"
 import './App.css';
 import CenteredTabs from './pages/CenteredTabs.js';
 import StudentsTable from './pages/StudentsTable.js';
@@ -7,7 +8,7 @@ import TeachersTable from './pages/TeachersTable.js';
 import Header from './components/Header.js'
 import Title from './pages/Title.js'
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <Header className="App-header" />
@@ -25,5 +26,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
