@@ -29,4 +29,11 @@ class Api::V1::RecordsController < ApplicationController
     render json: records
   end
 
+  def get_record_from_curriculum
+    curriculum = Curriculum.find(params[:id])
+    records = []
+    records = curriculum.records
+    render json: records
+  end
+
 end
