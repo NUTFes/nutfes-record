@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios"
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -48,7 +49,11 @@ export default function DenseTable() {
                   <p>student</p>
                 }
               </TableCell>
-              <TableCell>{student.name}</TableCell>
+              <TableCell>
+                <Link to={{ pathname: '/members/' + student.id, params: { user_id: student.id } }}>
+                  {student.name}
+                </Link>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

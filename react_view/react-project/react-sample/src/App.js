@@ -1,28 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { Grid } from '@material-ui/core';
-import axios from "axios"
+import React from "react";
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
-import CenteredTabs from './pages/CenteredTabs.js';
-import StudentsTable from './pages/StudentsTable.js';
-import TeachersTable from './pages/TeachersTable.js';
 import Header from './components/Header.js'
-import Title from './pages/Title.js'
+import Top from './pages/Top.js';
+import Member from './pages/Member';
 
 const App = () => {
   return (
     <div className="App">
       <Header className="App-header" />
-      <body>
-        <Grid container alignItems="center" justify="center">
-          <Grid item xs={8}>
-            <Title />
-            <CenteredTabs labels={['Students', 'Teachers']}>
-              <StudentsTable />
-              <TeachersTable />
-            </CenteredTabs>
-          </Grid>
-        </Grid>
-      </body>
+        <BrowserRouter>
+          <Switch>
+            <Route exact={true} path="/" component={Top} />
+            <Route path="/members/:userId" component={Member} />
+            {/* Not Found */}
+            <Route component={() => <Redirect to="/" />} />
+          </Switch>
+        </BrowserRouter>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios"
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -18,7 +19,7 @@ const useStyles = makeStyles({
 export default function DenseTable() {
   
   const host = "http://localhost:3000/"
-  // useStateで
+  // useStateでteachersの変数を定義
   const [teachers, setTeachers] = useState([]);
 
   // teachersを取得（非同期処理）
@@ -42,14 +43,14 @@ export default function DenseTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {teachers.map((teacher) => (
+        {teachers.map((teacher) => (
             <TableRow key={teacher.id}>
-              <TableCell component="th" scope="row">
-                {teacher.role_id === 1 &&
-                  <p>teacher</p>
-                }
-              </TableCell>
-              <TableCell>{teacher.name}</TableCell>
+                <TableCell component="th" scope="row">
+                    {teacher.role_id === 1 &&
+                      <p>teacher</p>
+                    }
+                </TableCell>
+                <TableCell><Link to={"/members/"+ teacher.id}>{teacher.name}</Link></TableCell>
             </TableRow>
           ))}
         </TableBody>
