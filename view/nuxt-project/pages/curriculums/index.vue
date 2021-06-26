@@ -7,34 +7,17 @@
       <hr>
       <div>
         <b-card no-body>
-          <b-tabs card>
-            <b-tab title="Frontend" active>
               <b-card-text>
-                <b-table striped hover :items="users_2" :fields="fields">
-                  <template #cell(role_id)="data">
-                    <b-badge variant="primary" v-if="data.item.role_id == 1">teacher</b-badge>
-                    <b-badge variant="danger" v-if="data.item.role_id == 2">student</b-badge>
+                <b-table striped hover :items="curriculums" :fields="fields">
+                  <template #cell(category_id)="data">
+                    <b-badge variant="primary" v-if="data.item.category_id == 1">React.js</b-badge>
+                    <b-badge variant="danger" v-if="data.item.category_id == 2">Go</b-badge>
                   </template>
-                  <template #cell(name)="data">
-                    <nuxt-link :to="`/curriculums/${data.item.id}`">{{ data.item.name }}</nuxt-link>
+                  <template #cell(Title)="data">
+                    <nuxt-link :to="`/curriculums/${data.item.id}`">{{ data.item.title }}</nuxt-link>
                   </template>
                 </b-table>
               </b-card-text>
-            </b-tab>
-            <b-tab title="Backend">
-              <b-card-text>
-                <b-table striped hover :items="users_1" :fields="fields">
-                  <template #cell(role_id)="data">
-                    <b-badge variant="primary" v-if="data.item.role_id == 1">teacher</b-badge>
-                    <b-badge variant="danger" v-if="data.item.role_id == 2">student</b-badge>
-                  </template>
-                  <template #cell(name)="data">
-                    <nuxt-link :to="`/curriculums/${data.item.id}`">{{ data.item.name }}</nuxt-link>
-                  </template>
-                </b-table>
-              </b-card-text>
-            </b-tab>
-          </b-tabs>
         </b-card>
       </div>
     </b-col>
@@ -49,10 +32,11 @@ export default {
     return {
       users_1: [],
       users_2: [],
+      curriculums: [],
       user: [],
       fields: [
-        { key: 'role_id', label: 'Role'  },
-        'name'
+        { key: 'category_id', label: 'Category'  },
+        'Title'
       ],
     }
   },
@@ -81,6 +65,14 @@ export default {
     }).then(response => {
         this.users_2 = response.data
       })
+    this.$axios.get('/curriculums', {
+      headers: { 
+        "Content-Type": "application/json", 
+      },
+    }).then(response => {
+        this.curriculums = response.data
+      })
+
   },
 }
 </script>
