@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios"
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -14,17 +16,21 @@ const useStyles = makeStyles({
   },
 });
 
-function createData(role, name) {
-  return { role, name };
-}
-
-const rows = [
-  createData('teacher', '大場雅士'),
-  createData('teacher', '百々優志郎'),
-  createData('teacher', '久々江耀平'),
-];
-
 export default function DenseTable() {
+  
+  const host = "http://localhost:3000/"
+  // useStateでteachersの変数を定義
+  const [teachers, setTeachers] = useState([]);
+
+  // teachersを取得（非同期処理）
+  useEffect(() => {
+    const getTeachers = async () => {
+      const response = await axios.get(host + "/api/v1/get_role_1");
+      setTeachers(response.data)
+    }
+    getTeachers()
+  }, [])
+
   const classes = useStyles();
 
   return (
@@ -37,12 +43,14 @@ export default function DenseTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.role}>
-              <TableCell component="th" scope="row">
-                {row.role}
-              </TableCell>
-              <TableCell>{row.name}</TableCell>
+        {teachers.map((teacher) => (
+            <TableRow key={teacher.id}>
+                <TableCell component="th" scope="row">
+                    {teacher.role_id === 1 &&
+                      <p>teacher</p>
+                    }
+                </TableCell>
+                <TableCell><Link to={"/members/"+ teacher.id}>{teacher.name}</Link></TableCell>
             </TableRow>
           ))}
         </TableBody>
