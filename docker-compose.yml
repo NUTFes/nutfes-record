@@ -1,18 +1,18 @@
-version: '3'
+version: "3"
 services:
   db:
     image: mysql:8.0
-    container_name: 'nutfes-record-db'
+    container_name: "nutfes-record-db"
     environment:
       MYSQL_ROOT_PASSWORD: password
     ports:
-      - '3306:3306'
+      - "3306:3306"
     command: --default-authentication-plugin=mysql_native_password
     volumes:
       - mysql-data:/var/lib/mysql
   api:
     build: ./api
-    container_name: 'nutfes-record-api'
+    container_name: "nutfes-record-api"
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - ./api:/myapp
@@ -24,7 +24,7 @@ services:
     tty: true
   view:
     build: ./view
-    container_name: 'nutfes-record-view'
+    container_name: "nutfes-record-view"
     command: npm run dev
     ports:
       - "9000:9000"
@@ -36,8 +36,8 @@ services:
       - VUE_APP_URL=http://localhost:3000
   react_view:
     build: ./react_view
-    container_name: 'nutfes-record-react-view'
-    command: sh -c "cd react-sample && yarn start"
+    container_name: "nutfes-record-react-view"
+    command: sh -c "cd /app/react-project && yarn start"
     ports:
       - "8000:3000"
     volumes:
