@@ -1,5 +1,5 @@
-/view/vue-project/node_modules
-/view/nuxt-project/node_modules
+/view/vue-project/node_modules/
+/view/nuxt-project/node_modules/
 /api/log
 /admin_api/log
 /api/tmp
