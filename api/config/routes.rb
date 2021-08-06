@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :groups
+  resources :categories
   resources :curriculums
   resources :teachers
   resources :records
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         get "records/:id" => "records#get_records"
         get "record/:id" => "records#get_record"
         get "get_records_from_user/:id" => "records#get_record_from_user"
+        get "get_records_from_curriculum/:id" => "records#get_record_from_curriculum"
         get "get_current_user" => "current_user#get_current_user"
       end
     end
